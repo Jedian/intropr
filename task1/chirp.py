@@ -1,6 +1,6 @@
 import numpy as np
 
-def chirp(samplingrate, duration, freqfrom, freqto, linear=True):
+def createChirpSignal(samplingrate, duration, freqfrom, freqto, linear=True):
     t = np.linspace(0, duration, samplingrate)
     
     duration = float(duration)
