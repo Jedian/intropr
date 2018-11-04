@@ -4,6 +4,8 @@ def createChirpSignal(samplingrate, duration, freqfrom, freqto, linear=True):
     t = np.linspace(0, duration, samplingrate)
     
     duration = float(duration)
+    freqto = float(freqto)
+    freqfrom = float(freqfrom)
 
     if linear:
         beta = (freqto - freqfrom)/duration

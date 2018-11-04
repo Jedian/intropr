@@ -23,7 +23,7 @@ def test_chirp():
     print("Testing chirp with samplingrate = 200, duration = 1, freq from 1 to 10")
     print
     x1, y1 = chirp.createChirpSignal(200, 1, 1, 10, linear=True)
-    x2, y2 = chirp.createChirpSignal(200, 1, 1, 10, linear=False)
+    x2, y2 = chirp.createChirpSignal(200, 1, 10, 1, linear=False)
 
     fig, ((plt1, plt2)) = plt.subplots(2, 1)
     plt1.title.set_text('Linear chirp')
