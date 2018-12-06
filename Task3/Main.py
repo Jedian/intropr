@@ -25,7 +25,7 @@ result = canny(img)
 
 plt.subplot(1,2,1);plt.imshow(img, 'gray')
 plt.title('Original Image')
-#plt.subplot(1,2,2);plt.imshow(result, 'gray')
+plt.subplot(1,2,2);plt.imshow(result, 'gray')
 plt.title('Canny Image')
 
 plt.show()

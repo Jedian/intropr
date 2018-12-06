@@ -59,18 +59,16 @@ def maxSuppress(g, theta):
                 converted_angle = 0
             #3 Store only if its local maximal
             if converted_angle == 0:
-                max_sup[x][y] = max(g[x][y], g[x+1][y], g[x-1][y])
+                max_sup[x][y] = max(g[x][y], g[x][y+1], g[x][y-1])
             elif converted_angle == 45:
-                max_sup[x][y] = max(g[x][y], g[x-1][y+1], g[x+1][y-1])
-            elif converted_angle == 90:
-                max_sup[x][y] = max(g[x][y], g[x][y-1], g[x][y+1])
-            else:
                 max_sup[x][y] = max(g[x][y], g[x-1][y-1], g[x+1][y+1])
+            elif converted_angle == 90:
+                max_sup[x][y] = max(g[x][y], g[x-1][y], g[x+1][y])
+            else:
+                max_sup[x][y] = max(g[x][y], g[x-1][y+1], g[x+1][y-1])
 
             if max_sup[x][y] != g[x][y]:
                 max_sup[x][y] = 0
-            else:
-                max_sup[x][y] = 255
 
     return max_sup
 
@@ -79,7 +77,28 @@ def maxSuppress(g, theta):
 #		t_low,t_high	[integer,integer]
 # return: 	hysteris	[2-D image]
 def hysteris(max_sup, t_low, t_high):
-    return 0
+    threshimg = np.zeros(shape=max_sup.shape)
+    for x in range(0, max_sup.shape[0]):
+        for y in range(0, max_sup.shape[1]):
+            if max_sup[x][y] <= t_low:
+                threshimg[x][y] = 0
+            elif max_sup[x][y] <= t_high:
+                threshimg[x][y] = 1
+            else:
+                threshimg[x][y] = 2
+
+    for x in range(0, max_sup.shape[0]):
+        for y in range(0, max_sup.shape[1]):
+            if threshimg[x][y] == 2:
+                threshimg[x][y] = 255
+                for xx in [-1, 0, 1]:
+                    for yy in [-1, 0, 1]:
+                        if xx+x >= 0 and xx+x < max_sup.shape[0]:
+                            if yy+y >= 0 and yy+y < max_sup.shape[0]:
+                                if threshimg[xx+x][yy+y] >= 1:
+                                    threshimg[xx+x][yy+y] = 255
+            
+    return threshimg
 
 def canny(img):
     #gaussian
