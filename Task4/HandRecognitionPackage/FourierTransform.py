@@ -10,11 +10,6 @@ def calcuateFourierParameters(img, k, sampling_steps):
     fshift = np.fft.fftshift(f)
     magnitude = 20*np.log(1+np.abs(fshift))
 
-    #print magnitude
-    #plt.imshow(magnitude, cmap='gray')
-    #plt.colorbar()
-    #plt.show()
-
     #polar coordinate transformation
     def polar(r, theta):
         #calculation returning x,y in cartesian coordinates
