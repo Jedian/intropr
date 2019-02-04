@@ -37,7 +37,6 @@ def preProcessing(img):
     key_pts = []
     i = 1
 
-    print len(contour)
     while i < ONC:
         while i<ONC and contour[i][0][0] > contour[i-1][0][0]:
             i += 1
